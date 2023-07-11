@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Product Detail{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img src="{{product.image.url}}" width="300px" height="300px">
+        </div>
+        <div class="col">
+            <h2 class="display-6">{{product.name}}</h2>
+            <p><span class="badge badge-light">가격</span>
+                {% load humanize %}
+                &#8361;{{product.price | floatformat:'0' | intcomma}}</p>
+            <form action="{% url 'cart:product_add' product.id %}" method="post">
+                {{add_to_cart}}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-outline-info btn-sm" value="장바구니에 담기">
+            </form>
+            <br>
+            <h5><span class="badge badge-light"><a href="{{product.url}}">홈페이지 바로가기</a></span></h5>
+            <br>
+            <h5><span class="badge badge-secondary">설명</span>{{product.description|linebreaks}}</h5>
+        </div>
+    </div>
+    <br><br>
+            {% load disqus_tags %}
+            {% disqus_show_comments %}
+</div>
+{% endblock %}

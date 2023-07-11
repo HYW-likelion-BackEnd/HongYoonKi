@@ -1,7 +1,7 @@
 from django import forms
-from .models import list
+from .models import Food_model
 
 class Foodlist(forms.ModelForm) :
     class Meta:
-        model = list
+        model = Food_model
         fields = ('title', 'star', 'where', 'time', 'description')

@@ -1,0 +1,34 @@
+{% extends 'foodlist/base.html' %}
+
+{% block title %}
+list
+{% endblock %}
+
+{% block content %}
+    <div class="btn-group">
+        <a href="{% url 'food_post' %}" class="btnbtn-info">Add food list</a>
+    </div>
+    <p></p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">URL</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for list in lists %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'food_detail' pk=list.pk %}">{{list.title}}</a></td>
+                <td><a href="" target="_blank">{{list.url}}</a></td>
+                <td><a href="" class="btn btn-success btn-sm">Modify</a></td>
+                <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
